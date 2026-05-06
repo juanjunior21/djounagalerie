@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List - DjounaGalerie</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/todo.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">🎨 DjounaGalerie</a>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link">Accueil</a></li>
+                <li class="nav-item"><a href="catalogue.html" class="nav-link">Catalogue</a></li>
+                <li class="nav-item"><a href="prestations.html" class="nav-link">Prestations</a></li>
+                <li class="nav-item"><a href="jokes.html" class="nav-link">😂 Blagues</a></li>
+                <li class="nav-item active"><a href="todo.html" class="nav-link">✓ Tâches</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="todo-container">
+        <div class="todo-section">
+            <!-- Header Card -->
+            <div class="todo-card">
+                <h1>📋 Ma Liste de Tâches</h1>
+                <p class="subtitle">Organisez vos tâches avec priorités et catégories</p>
+
+                <!-- Input Section -->
+                <div class="input-section">
+                    <input 
+                        type="text" 
+                        id="taskInput" 
+                        class="todo-input" 
+                        placeholder="Ajouter une nouvelle tâche..."
+                        autocomplete="off"
+                    >
+                    <button id="addBtn" class="btn btn-primary">➕ Ajouter</button>
+                </div>
+
+                <!-- Controls Section -->
+                <div class="controls-section">
+                    <!-- Priority Selection -->
+                    <div class="filter-group">
+                        <label for="prioritySelect">Priorité :</label>
+                        <select id="prioritySelect" class="filter-select">
+                            <option value="high">🔴 Haute</option>
+                            <option value="medium" selected>🟡 Moyenne</option>
+                            <option value="low">🟢 Basse</option>
+                        </select>
+                    </div>
+
+                    <!-- Category Selection -->
+                    <div class="category-group">
+                        <label for="categorySelect">Catégorie :</label>
+                        <select id="categorySelect" class="category-select">
+                            <option value="personal" selected>👤 Personnel</option>
+                            <option value="work">💼 Professionnel</option>
+                            <option value="shopping">🛍️ Shopping</option>
+                            <option value="health">🏥 Santé</option>
+                            <option value="other">📌 Autre</option>
+                        </select>
+                    </div>
+
+                    <!-- Filter -->
+                    <div class="filter-group">
+                        <label for="filterSelect">Filtre :</label>
+                        <select id="filterSelect" class="filter-select">
+                            <option value="all">📋 Toutes</option>
+                            <option value="active">⏳ Actives</option>
+                            <option value="completed">✅ Complétées</option>
+                        </select>
+                    </div>
+
+                    <!-- Sort -->
+                    <div class="sort-group">
+                        <label for="sortSelect">Trier par :</label>
+                        <select id="sortSelect" class="sort-select">
+                            <option value="date-new" selected>📅 Plus récentes</option>
+                            <option value="date-old">📅 Plus anciennes</option>
+                            <option value="priority">🎯 Priorité</option>
+                            <option value="name">🔤 Alphabétique</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Statistics -->
+                <div class="stats">
+                    <div class="stat-item">
+                        <span class="stat-label">Total</span>
+                        <span class="stat-value" id="totalCount">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Actives</span>
+                        <span class="stat-value active" id="activeCount">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Complétées</span>
+                        <span class="stat-value completed" id="completedCount">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Progression</span>
+                        <span class="stat-value" id="progressPercent">0%</span>
+                    </div>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="progress-container">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+            </div>
+
+            <!-- Todo List -->
+            <div id="todoList" class="todo-list"></div>
+
+            <!-- Empty State -->
+            <div id="emptyState" class="empty-state" style="display:none;">
+                <p>📭 Aucune tâche pour le moment. Soyez productif ! 🚀</p>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons" style="margin-top: 30px;">
+                <button id="exportBtn" class="btn btn-success small">💾 Exporter en JSON</button>
+                <button id="clearCompletedBtn" class="btn btn-secondary small">🗑️ Supprimer complétées</button>
+                <button id="clearAllBtn" class="btn btn-danger small">🧹 Vider tout</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/todo.js"></script>
+    <script>
+        // Initialise l'app au chargement de la page
+        document.addEventListener('DOMContentLoaded', () => {
+            todoApp = new TodoApp();
+            todoApp.render();
+        });
+    </script>
+</body>
+</html>
